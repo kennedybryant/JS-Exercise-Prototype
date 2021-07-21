@@ -68,10 +68,10 @@ kevin.eat('🍱');
 kevin.eat('🍝');
 kevin.eat('🍔');
 
-console.log(kevin.stomach);
+console.log('Task 1:', kevin.stomach);
 kevin.poop();
-console.log(kevin.stomach);
-console.log(kevin.toString());
+console.log('Task 1:', kevin.stomach);
+console.log('Task 1:', kevin.toString());
 
 /*
   TASK 2
@@ -98,6 +98,25 @@ Car.prototype.fill = function(gallons){
   this.tank = this.tank + gallons;
 }
 
+Car.prototype.drive = function(distance){
+  const driveableMiles = this.tank * this.milesPerGallon;
+  if(distance <= driveableMiles){
+  this.odometer = this.odometer + distance;
+  this.tank = this.tank - (distance / this.milesPerGallon);
+  }else{
+    this.tank = 0;
+    this.odometer = this.odometer + driveableMiles;
+    return `I ran out of fuel at ${this.odometer} miles!`;
+  }
+
+}
+
+const jeep = new Car('jeep', 14);
+
+jeep.fill(14);
+
+console.log(jeep.drive(240));
+console.log('Task 2:', jeep.tank)
 
 /*
   TASK 3
@@ -117,8 +136,6 @@ Baby.prototype = Object.create(Person.prototype);
 Baby.prototype.play = function(){
   return `Playing with ${this.favoriteToy}`;
 }
-
-
 
 /* 
   TASK 4
